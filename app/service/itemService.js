@@ -53,7 +53,6 @@ itemModel.deleteItem = function(id, callback){
     if(err){
       console.log(err);
     }else{
-      console.log(result);
       callback(result);
     }
   });

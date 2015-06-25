@@ -25,7 +25,7 @@ block content
           a(href='/item/#{item._id}?readonly=false')
             i.fa.fa-pencil-square-o
         td
-          a(href='#', onclick="showModalDelete('/item/delete/#{item._id}')")
+          a(href='javascript:;', onclick="showModalDelete('/item/delete/#{item._id}')")
             i.fa.fa-trash-o
   div#pagination
   include ../modalDelete.jade

@@ -7,13 +7,18 @@ var app = express()
 var path = require('path')
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+var logger = require('express-logger');
+var helmet = require('helmet');
+var methodOverride = require('method-override');
+var csrf = require('csurf');  
 
 function compile(str, path) {
   return stylus(str)
     .set('filename', path)
     .use(nib());
 }
-
 app.use(function(req, res, next){
 	 res.config = config;
   var render = res.render;
@@ -26,9 +31,9 @@ app.use(function(req, res, next){
   next();
 });
 
-app.set('views', __dirname + '/views')
-app.set('view engine', 'jade')
-app.set('config', config)
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.set('config', config);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(stylus.middleware(
@@ -37,6 +42,23 @@ app.use(stylus.middleware(
   }
 ))
 app.use(express.static(__dirname + '/public'))
+app.use(cookieParser());
+app.use(logger({path:__dirname + '/app/log/logfile.txt'}));
+app.use(methodOverride());  
+app.use(session({
+  secret: 'secret0009948485932',
+  key: 'sid',
+  //cookie: {httpOnly: true, secure: true}
+  cookie: {httpOnly: true},
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(csrf()); 
+app.use(function (req, res, next) {  
+  res.locals.csrftoken = req.csrfToken();
+  next();  
+});  
+
 
 //Config mongodb
 if(config.mongodb){

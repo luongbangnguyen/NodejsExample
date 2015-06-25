@@ -9,15 +9,18 @@ div.modal.fade#modalDelete(tabindex='-1', role='dialog' aria-labelledby='myModal
         div.modal-footer
           button(type='button',class='btn btn-default',data-dismiss='modal') Cancel
           button#btnSuccess(type='button',class='btn btn-primary',path='',onclick='acceptDeleteItem(this)') Ok
+input#csrftoken(type="hidden", name="_csrf", value="#{csrftoken}")
 script(type="text/javascript").
+  
   function deleteItem(path){
-    $.post( path, function( data ) {
-       location.reload();
+    var csrftoken =  $("#csrftoken").val();
+    console.log(csrftoken);
+    $.post(path,{_csrf : csrftoken}, function(data){
+      location.reload();
     });
   }
 
   function showModalDelete(pathAjax){
-    console.log(pathAjax);
     $('#modalDelete').modal('show');
     var btnSuccess = $('#modalDelete #btnSuccess');
     $(btnSuccess).attr("path", pathAjax);
