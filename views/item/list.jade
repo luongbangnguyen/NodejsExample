@@ -1,0 +1,44 @@
+extend ../layout
+block content
+  script(src='/javascript/item/list.js')
+  a.btn.btn-success(href='/item/add' role='button') Add new
+  table.table.table-striped
+    thead
+      tr
+        th Title
+        th Link
+        th Image
+        th Content Snippet
+        th Content
+        th
+        th
+    tbody
+    for item in items.data
+      tr
+        td
+          a(href='/item/#{item._id}?readonly=true') #{item.title}
+        td #{item.link}
+        td #{item.image}
+        td #{item.contentSnippet}
+        td #{item.content}
+        td
+          a(href='/item/#{item._id}?readonly=false')
+            i.fa.fa-pencil-square-o
+        td
+          a(href='#', onclick="showModalDelete('/item/delete/#{item._id}')")
+            i.fa.fa-trash-o
+  div#pagination
+  include ../modalDelete.jade
+  script(type="text/javascript").
+    $(document).ready(function() {
+      pagination(#{items.currentPage}, #{items.totalPages}, #{items.numberOfPages});
+    });
+block sidebar
+  .widget
+    h1 Widget
+    p
+      | Sed auctor neque eu tellus rhoncus ut
+      | eleifend nibh porttitor. Ut in nulla enim.
+    p
+      | Vivamus hendrerit arcu sed erat molestie
+      | vehicula.

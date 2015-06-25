@@ -1,0 +1,39 @@
+extend ../layout
+block content
+  script(src='/javascript/item/add.js')
+  form(method='post',role='form',action='/item/add')
+    div.form-group
+      label Title item
+      input(id='txttitle', type='text', placeholder='insert title item',
+      name='title', class='form-control', value='#{item.title}')
+    div.form-group
+      label Link
+      input(id='txtlink',type='text',placeholder='insert link',
+      name='link',class='form-control',value='#{item.link}')
+    div.form-group
+      label Image
+      input(id='txtimage',type='text',value='#{item.image}',placeholder='insert link image',
+      name='image',class='form-control')
+    div.form-group
+      label Content Snippet
+      input(id='txtcontentSnippet',type='text',value='#{item.contentSnippet}',placeholder='insert content snippet',
+      name='contentSnippet',class='form-control')
+    div.form-group
+      label Content
+      input(id='txtcontent',type='text',value='#{item.content}',
+      placeholder='insert content item',name='content',class='form-control')
+    <input type=hidden name=itemId value='#{item._id}'>
+    button(type='submit' class='btn btn-default', style='display:#{display};') Submit
+  script(type="text/javascript").
+    $(document).ready(function() {
+      readonlyInputTypeText(#{readonly});
+    });
+block sidebar
+  .widget
+    h1 Widget
+    p
+      | Sed auctor neque eu tellus rhoncus ut
+      | eleifend nibh porttitor. Ut in nulla enim.
+    p
+      | Vivamus hendrerit arcu sed erat molestie
+      | vehicula.

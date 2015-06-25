@@ -1,0 +1,51 @@
+doctype
+html
+  head
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='description', content='#{meta.description}')
+    meta(name='keywords', content='#{meta.keywords}')
+
+    meta(itemprop='description', content='#{meta.description}')
+    meta(itemprop='image', content='#{meta.image}')
+
+    meta(property='og:site_name', content='#{meta.name}')
+    meta(property='og:title', content='#{meta.title}')
+    meta(property='og:url', content='#{meta.url}')
+    meta(property='og:creator', content='#{meta.author}')
+    meta(property='og:type', content='article')
+    meta(property='og:image', content='#{meta.image}')
+    meta(property='og:description', content='#{meta.description}')
+
+    meta(name='twitter:card', content='summary_large_image')
+    meta(name='twitter:site', content='#{meta.name}')
+    meta(name='twitter:creator', content='#{meta.author}')
+    meta(name='twitter:url', content='#{meta.url}')
+    meta(name='twitter:title', content='#{meta.title}')
+    meta(name='twitter:description', content='#{meta.description}')
+    meta(name='twitter:image', content='#{meta.image}')
+    meta(name='twitter:image:src', content='#{meta.image}')
+
+    meta(name='twitter:widgets:link-color', content='#ff00ff')
+    meta(name='twitter:widgets:border-color', content='#ff00ff')
+    meta(name='twitter:widgets:csp', content='on')
+
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='csrf-token', content=_csrf)
+    title #{meta.title}
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet")
+    link(href="/assets/bootstrap/css/bootstrap-theme.css" rel="stylesheet")
+    script(src="/assets/js/jquery.min.js")
+    script(src="/assets/bootstrap/js/bootstrap.min.js")
+    script(src="/assets/bootstrap/js/bootstrap-paginator.min.js")
+    link(rel='stylesheet',href="/assets/font-awesome-4.3.0/css/font-awesome.min.css")
+  body
+    header
+      h1 #{title}
+    .container
+      .main-content
+        block content
+      .sidebar
+        block sidebar
+    footer
+      p Running on node with Express, Jade and Stylus

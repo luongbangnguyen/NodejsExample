@@ -1,0 +1,30 @@
+{
+  "name": "hello_word",
+  "version": "0.0.0",
+  "description": "this is project simple for nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hello",
+    "word"
+  ],
+  "author": "bangnguyenluong",
+  "license": "BSD-2-Clause",
+  "private": "true",
+  "dependencies": {
+    "content-disposition": "~0.5.0",
+    "commander": "~2.8.1",
+    "body-parser": "*",
+    "express": "~4.12.4",
+    "jade": "*",
+    "stylus": "*",
+    "nib": "*",
+    "asap": "*",
+    "helmet": "~0.9.1",
+    "coffee-script": "~1.9.3",
+    "mongoose": "*",
+    "async": "*"
+  }
+}

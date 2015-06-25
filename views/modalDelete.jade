@@ -1,0 +1,29 @@
+div.modal.fade#modalDelete(tabindex='-1', role='dialog' aria-labelledby='myModalLabel')
+    div.modal-dialog(role='document')
+      div.modal-content
+        div.modal-header(style='border-bottom:none; ')
+          button(type='button',class='close',data-dismiss='modal',aria-label='Close')
+            span(aria-hidden='true') &times;
+        div.modal-body(style='text-align: center;')
+          h3 Do you want delete item
+        div.modal-footer
+          button(type='button',class='btn btn-default',data-dismiss='modal') Cancel
+          button#btnSuccess(type='button',class='btn btn-primary',path='',onclick='acceptDeleteItem(this)') Ok
+script(type="text/javascript").
+  function deleteItem(path){
+    $.post( path, function( data ) {
+       location.reload();
+    });
+  }
+
+  function showModalDelete(pathAjax){
+    console.log(pathAjax);
+    $('#modalDelete').modal('show');
+    var btnSuccess = $('#modalDelete #btnSuccess');
+    $(btnSuccess).attr("path", pathAjax);
+  }
+
+  function acceptDeleteItem(obj){
+    var path = $(obj).attr("path");
+    deleteItem(path);
+  }
